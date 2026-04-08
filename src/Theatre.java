@@ -9,8 +9,8 @@ public class Theatre {
         Director director1 = new Director("Алексей", "Смирнов", Gender.MALE, 12);
         Director director2 = new Director("Елена", "Васильева", Gender.FEMALE, 8);
 
-        String musicAuthor = "Пётр Чайковский";
-        String choreographer = "Юрий Григорович";
+        Person musicAuthor = new Person("Пётр", "Чайковский", Gender.MALE);
+        Person choreographer = new Person("Юрий", "Григорович", Gender.MALE);
 
         ArrayList<Actor> dramaActors = new ArrayList<>();
         ArrayList<Actor> operaActors = new ArrayList<>();
@@ -56,10 +56,10 @@ public class Theatre {
         System.out.println();
 
         System.out.println("Либретто оперы:");
-        System.out.println(opera.getLibrettoText());
+        opera.printLibrettoText();
         System.out.println();
 
         System.out.println("Либретто балета:");
-        System.out.println(ballet.getLibrettoText());
+        ballet.printLibrettoText();
     }
 }

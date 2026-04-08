@@ -29,19 +29,29 @@ public class Show {
     }
 
     public void replaceActor(Actor newActor, String surnameToReplace) {
-        for (Actor actor : listOfActors) {
-            if (actor.equals(newActor)) {
-                System.out.println("Актёр на замену уже участвует в спектакле. Актерский состав остался без изменений.");
-                return;
-            } else {
-                if (actor.getSurname().equals(surnameToReplace)) {
-                    listOfActors.remove(actor);
-                    listOfActors.add(newActor);
-                    System.out.println("Заменили " + surnameToReplace + " на " + newActor.getSurname() + ".");
-                    return;
-                }
+
+        if (listOfActors.contains(newActor)) {
+            System.out.println("Актёр на замену уже участвует в спектакле. Актерский состав остался без изменений.");
+            return;
+        }
+
+        int countActor = 0;
+        int indexToReplace = -1;
+
+        for (int i = 0; i < listOfActors.size(); i++) {
+            if (listOfActors.get(i).getSurname().equals(surnameToReplace)) {
+                countActor++;
+                indexToReplace = i;
             }
         }
-        System.out.println("Актёр с такой фамилией не найден.");
+
+        if (countActor > 1) {
+            System.out.println("В спектакле несколько актёров с фамилией " + surnameToReplace + ". Замена невозможна.");
+        } else if (countActor == 0) {
+            System.out.println("Актёр с такой фамилией не найден.");
+        } else {
+                listOfActors.set(indexToReplace, newActor);
+                System.out.println("Заменили " + surnameToReplace + " на " + newActor.getSurname() + ".");
+        }
     }
 }
